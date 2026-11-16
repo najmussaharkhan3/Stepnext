@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: stepnext_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./stepnext_db.sql:/docker-entrypoint-initdb.d/stepnext_db.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psecret"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: Laravel
+      APP_ENV: production
+      APP_KEY: base64:FMQ1az+KhWLv4Lfp1OeSmNJx6z3ZySY8nHFVjz88aI8=
+      APP_DEBUG: "false"
+      APP_URL: http://54.255.182.86:8000
+      SANCTUM_STATEFUL_DOMAINS: 54.255.182.86
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: stepnext_db
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      FILESYSTEM_DISK: public
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - storage_data:/var/www/html/storage/app/public
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  storage_data:

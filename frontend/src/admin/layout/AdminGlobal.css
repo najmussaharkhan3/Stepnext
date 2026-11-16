@@ -1,0 +1,237 @@
+:root {
+  --admin-bg: #F9FAFB;
+  --admin-surface: #FFFFFF;
+  --admin-text: #111827;
+  --admin-text-light: #6B7280;
+  --admin-border: #E5E7EB;
+  --admin-primary: #1E4E8C;
+  --admin-primary-hover: #153A6A;
+  --admin-danger: #EF4444;
+  --admin-danger-hover: #DC2626;
+  --admin-success: #10B981;
+  --admin-sidebar-bg: #1E4E8C;
+  --admin-sidebar-text: #FFFFFF;
+  --admin-sidebar-hover: rgba(255, 255, 255, 0.1);
+  --admin-sidebar-active: rgba(255, 255, 255, 0.2);
+  --admin-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --admin-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --admin-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --admin-radius: 8px;
+  /* Standardized to 8px */
+  --admin-radius-sm: 6px;
+  /* Standardized to 6px */
+}
+
+/* Base */
+.admin-layout {
+  font-family: 'Inter', sans-serif;
+  color: var(--admin-text);
+  background: var(--admin-bg);
+  min-height: 100vh;
+}
+
+.admin-main {
+  background: var(--admin-bg);
+}
+
+/* ===============================
+   GLOBAL ADMIN PAGE STYLES
+================================= */
+.admin-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.admin-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--admin-text);
+  margin: 0;
+}
+
+/* ===============================
+   ADMIN CARDS
+================================= */
+.admin-card {
+  background: var(--admin-surface);
+  border-radius: var(--admin-radius);
+  box-shadow: var(--admin-shadow-sm);
+  border: 1px solid var(--admin-border);
+  padding: 24px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.admin-card:hover {
+  box-shadow: var(--admin-shadow);
+}
+
+/* ===============================
+   ADMIN BUTTONS
+================================= */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--admin-radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.admin-btn-primary {
+  background: var(--admin-primary);
+  color: white;
+}
+
+.admin-btn-primary:hover {
+  background: var(--admin-primary-hover);
+  box-shadow: var(--admin-shadow);
+  transform: translateY(-1px);
+}
+
+.admin-btn-success {
+  background: var(--admin-success);
+  color: white;
+}
+
+.admin-btn-success:hover {
+  filter: brightness(0.9);
+}
+
+.admin-btn-icon {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 50px;
+  /* Pill shape for table actions */
+}
+
+.admin-btn-blue {
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+}
+
+.admin-btn-blue:hover {
+  background: #DBEAFE;
+}
+
+.admin-btn-red {
+  background: #FEF2F2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+}
+
+.admin-btn-red:hover {
+  background: #FEE2E2;
+}
+
+.admin-btn-gray {
+  background: #F3F4F6;
+  color: #4B5563;
+  border: 1px solid #E5E7EB;
+}
+
+.admin-btn-gray:hover {
+  background: #E5E7EB;
+}
+
+/* ===============================
+   ADMIN DATA TABLES
+================================= */
+.admin-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--admin-radius-sm);
+  border: 1px solid var(--admin-border);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background: var(--admin-surface);
+}
+
+.admin-table th {
+  background: #F3F4F6;
+  color: var(--admin-text-light);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table td {
+  padding: 16px;
+  font-size: 14px;
+  color: var(--admin-text);
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: var(--admin-bg);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Empty State */
+.admin-table-empty {
+  text-align: center;
+  padding: 32px !important;
+  color: var(--admin-text-light);
+  font-size: 14px;
+}
+
+/* Small image inside table - adjusted smaller */
+.admin-table-img {
+  width: 35px;
+  /* chhota kiya from 50px */
+  height: 35px;
+  /* chhota kiya from 50px */
+  border-radius: var(--admin-radius-sm);
+  object-fit: cover;
+  border: 1px solid var(--admin-border);
+  transition: transform 0.2s ease;
+}
+
+.admin-table-img:hover {
+  transform: scale(1.1);
+  box-shadow: var(--admin-shadow-sm);
+}
+
+/* Table wrapper to allow horizontal scroll on mobile */
+.admin-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* smooth scroll for iOS */
+  border-radius: var(--admin-radius-sm);
+  border: 1px solid var(--admin-border);
+  width: 100%;
+}
+
+/* Optional: make sure table is wide enough to scroll on small screens */
+.admin-table {
+  min-width: 700px;
+  /* ensures horizontal scroll on mobile */
+}

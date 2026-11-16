@@ -1,0 +1,77 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--admin-bg);
+  position: relative;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px;
+  max-width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   MOBILE HEADER
+================================= */
+.admin-mobile-header {
+  display: none;
+  background: var(--admin-sidebar-bg);
+  color: white;
+  padding: 16px 20px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--admin-shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.admin-mobile-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.admin-mobile-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Sidebar Overlay */
+.admin-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 45;
+  display: none;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-mobile-header {
+    display: flex;
+  }
+
+  .admin-main {
+    padding: 20px 16px;
+  }
+
+  .admin-sidebar-overlay {
+    display: block;
+  }
+}
